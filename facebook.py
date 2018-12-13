@@ -29,6 +29,7 @@ driver.find_element_by_name('pass').send_keys(upw)
 fb_submit=driver.find_element_by_name('login')
 fb_submit.click()
 
+#Make screenshot
 driver.get_screenshot_as_file('fb_main_headless.png')
 
 driver.quit()
