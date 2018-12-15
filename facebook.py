@@ -43,7 +43,8 @@ def Choose_What_to_Do():
 	print ("")
 	print ("------------ 작업 가능한 목록 -----------")
 	print ("")
-	print (" 1. 친구 목록 추출")
+	print (" 1. 내 친구 목록 추출")
+	print (" 2. 다른 사람 친구 목록 추룰")
 	print ("")
 	print ("-----------------------------------------")
 
@@ -52,6 +53,11 @@ def Choose_What_to_Do():
 	if choose == "1" :
 		print ("-----------------------------------------")
 		Print_Friendlist()
+		print ("-----------------------------------------")
+		print ("")
+	elif choose == "2" :
+		print ("-----------------------------------------")
+		ID_Login()
 		print ("-----------------------------------------")
 		print ("")
 	else :
@@ -92,6 +98,27 @@ def Account_Login():
 
 	
 	Choose_What_to_Do()
+
+def ID_Login():
+
+	print("")
+	print("Input ID")
+	print("예) https://facebook.com/seunghwan.yi.92 라면 seunghwan.yi.92 를 입력")
+	uid = input("ID : ")
+
+	try :
+		#Bypass plugin
+		driver.get('https://www.facebook.com/' + uid)
+		driver.implicitly_wait(100)
+		driver.get_screenshot_as_file('fb_main_headless.png')
+		driver.execute_script("Object.defineProperty(navigator, 'plugins', {get: function() {return[1, 2, 3, 4, 5];},});")
+		#driver.execute_script("Object.defineProperty(navigator, 'languages', {get: function() {return ['ko-KR', 'ko']}})")
+		Print_Friendlist()
+
+	except :
+		print ("[*] 찾을 수 없는 아이디!")
+		driver.quit()
+		sys.exit()
 
 def Print_Friendlist():
 
